@@ -78,6 +78,7 @@ subprojects {
 
     }
 
+    //参考:https://kotlinlang.org/docs/gradle-compiler-options.html
     tasks
         .withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>()
         .configureEach {
