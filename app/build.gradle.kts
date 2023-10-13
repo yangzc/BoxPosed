@@ -10,11 +10,11 @@ android {
         applicationId = "cn.xutils.boxposed.app"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        externalNativeBuild {
-            cmake {
-                cppFlags += "-std=c++11"
-            }
-        }
+//        externalNativeBuild {
+//            cmake {
+//                cppFlags += "-std=c++11"
+//            }
+//        }
     }
 
     buildTypes {
@@ -26,9 +26,9 @@ android {
             )
         }
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+//    kotlinOptions {
+//        jvmTarget = "17"
+//    }
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")

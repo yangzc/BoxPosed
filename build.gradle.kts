@@ -1,6 +1,7 @@
 import com.android.build.api.dsl.ApplicationDefaultConfig
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.api.AndroidBasePlugin
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
@@ -19,10 +20,12 @@ val androidCompileSdkVersion by extra(34)
 val androidCompileNdkVersion by extra("25.2.9519653")
 val androidSourceCompatibility by extra(JavaVersion.VERSION_17)
 val androidTargetCompatibility by extra(JavaVersion.VERSION_17)
+val kotlinJvmTargetVersion by extra(JvmTarget.JVM_17)
+
 subprojects {
     plugins.withType(AndroidBasePlugin::class.java) {
         extensions.configure(CommonExtension::class.java) {
-            print("ss $name")
+            print("extension name is: $name\n")
 
             compileSdk = androidCompileSdkVersion
             ndkVersion = androidCompileNdkVersion
@@ -36,13 +39,32 @@ subprojects {
 
             defaultConfig {
                 minSdk = androidMinSdkVersion
-                if(this is ApplicationDefaultConfig) {
+                if (this is ApplicationDefaultConfig) {
                     targetSdk = androidTargetSdkVersion
                     versionCode = verCode
                     versionName = verName
                 }
+
+                externalNativeBuild {
+                    cmake {
+                        arguments.addAll(
+                            arrayOf(
+                                "-DCORE_ROOT=${File(rootDir.absolutePath, "core")}",
+//                                "-DANDROID_STL=none", // 不引用Android标准库
+                            )
+                        )
+                        val flags = arrayOf(
+                            "-Wno-gnu-string-literal-operator-template",
+                            "-Wno-c++2b-extensions",
+//                            "-std=c++11"
+                        )
+                        cFlags.addAll(flags)
+                        cppFlags.addAll(flags)
+                        abiFilters("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+                    }
+                }
             }
-            
+
             lint {
                 abortOnError = true
                 checkReleaseBuilds = false
@@ -53,5 +75,12 @@ subprojects {
                 targetCompatibility = androidTargetCompatibility
             }
         }
+
     }
+
+    tasks
+        .withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>()
+        .configureEach {
+            compilerOptions.jvmTarget.set(kotlinJvmTargetVersion)
+        }
 }
