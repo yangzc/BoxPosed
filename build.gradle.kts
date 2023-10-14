@@ -12,6 +12,7 @@ plugins {
 
 }
 
+//https://github.com/LSPosed/LSPlugin/blob/master/cmaker/src/main/kotlin/org/lsposed/lsplugin/CmakerPlugin.kt
 //cmaker {
 //    default {
 //        arguments.addAll(
