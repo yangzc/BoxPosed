@@ -12,7 +12,8 @@ cmake_minimum_required(VERSION 3.22.1)
 # build script scope).
 project("core")
 
-MESSAGE(WARNING "params: ${CORE_ROOT}")
+MESSAGE(WARNING "params: ${EXTERNAL_ROOT}")
+add_subdirectory(${EXTERNAL_ROOT} external)
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.

@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.application) apply false
     alias(libs.plugins.library) apply false
     alias(libs.plugins.kotlin) apply false
+
 }
 
 val verCode by extra(100)
@@ -49,6 +50,7 @@ subprojects {
                     cmake {
                         arguments.addAll(
                             arrayOf(
+                                "-DEXTERNAL_ROOT=${File(rootDir.absolutePath, "external")}",
                                 "-DCORE_ROOT=${File(rootDir.absolutePath, "core")}",
 //                                "-DANDROID_STL=none", // 不引用Android标准库
                             )

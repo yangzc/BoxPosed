@@ -1,4 +1,5 @@
 [versions]
+agp = "8.1.2"
 android = "8.1.2"
 kotlin = "1.9.10"
 libxposed = "100"
@@ -13,7 +14,6 @@ material = "1.8.0"
 application = { id = "com.android.application", version.ref = "android" }
 library = { id = "com.android.library", version.ref = "android" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-lsplugin-cmaker = { id = "org.lsposed.lsplugin.cmaker", version = "1.2" }
 
 [libraries]
 androidx-annotation = { module = "androidx.annotation:annotation", version = "1.6.0" }
