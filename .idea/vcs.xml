@@ -2,5 +2,12 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/external/cxx" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/external/dobby" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/external/fmt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/external/lsplant" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/external/lsplant/docs/doxygen-awesome-css" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/external/lsplant/lsplant/src/main/jni/external/dex_builder" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/external/lsplant/lsplant/src/main/jni/external/dex_builder/external/parallel_hashmap" vcs="Git" />
   </component>
 </project>
