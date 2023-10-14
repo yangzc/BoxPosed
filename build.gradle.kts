@@ -12,32 +12,32 @@ plugins {
 
 }
 
-cmaker {
-    default {
-        arguments.addAll(
-            arrayOf(
-                "-DEXTERNAL_ROOT=${File(rootDir.absolutePath, "external")}",
-                "-DCORE_ROOT=${File(rootDir.absolutePath, "core/src/main/jni")}",
-                "-DANDROID_STL=none"
-            )
-        )
-        val flags = arrayOf(
-            "-DINJECTED_AID=2000",
-            "-Wno-gnu-string-literal-operator-template",
-            "-Wno-c++2b-extensions",
-        )
-        cFlags.addAll(flags)
-        cppFlags.addAll(flags)
-        abiFilters("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
-    }
-    buildTypes {
-        if (it.name == "release") {
-            arguments += "-DDEBUG_SYMBOLS_PATH=${
-                layout.buildDirectory.dir("symbols").get().asFile.absolutePath
-            }"
-        }
-    }
-}
+//cmaker {
+//    default {
+//        arguments.addAll(
+//            arrayOf(
+//                "-DEXTERNAL_ROOT=${File(rootDir.absolutePath, "external")}",
+//                "-DCORE_ROOT=${File(rootDir.absolutePath, "core/src/main/jni")}",
+//                "-DANDROID_STL=none"
+//            )
+//        )
+//        val flags = arrayOf(
+//            "-DINJECTED_AID=2000",
+//            "-Wno-gnu-string-literal-operator-template",
+//            "-Wno-c++2b-extensions",
+//        )
+//        cFlags.addAll(flags)
+//        cppFlags.addAll(flags)
+//        abiFilters("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+//    }
+//    buildTypes {
+//        if (it.name == "release") {
+//            arguments += "-DDEBUG_SYMBOLS_PATH=${
+//                layout.buildDirectory.dir("symbols").get().asFile.absolutePath
+//            }"
+//        }
+//    }
+//}
 
 val verCode by extra(100)
 val verName by extra("1.0.0")
@@ -74,26 +74,38 @@ subprojects {
                     versionName = verName
                 }
 
-//                externalNativeBuild {
-//                    cmake {
-//                        arguments.addAll(
-//                            arrayOf(
-//                                "-DEXTERNAL_ROOT=${File(rootDir.absolutePath, "external")}",
-//                                "-DCORE_ROOT=${File(rootDir.absolutePath, "core")}",
-//                                "-DANDROID_STL=none", // 不引用Android标准库
-//                            )
-//                        )
-//                        val flags = arrayOf(
-//                            "-DINJECTED_AID=2000",
-//                            "-Wno-gnu-string-literal-operator-template",
-//                            "-Wno-c++2b-extensions",
-////                            "-std=c++11"
-//                        )
-//                        cFlags.addAll(flags)
-//                        cppFlags.addAll(flags)
-//                        abiFilters("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
-//                    }
-//                }
+                externalNativeBuild {
+                    cmake {
+                        arguments.addAll(
+                            arrayOf(
+                                "-DEXTERNAL_ROOT=${File(rootDir.absolutePath, "external")}",
+                                "-DCORE_ROOT=${File(rootDir.absolutePath, "core")}",
+                                "-DANDROID_STL=none", // 不引用Android标准库
+                            )
+                        )
+                        val flags = arrayOf(
+//                            "-DINJECTED_AID=2000","-Wall",
+                            "-Qunused-arguments",
+                            "-fno-rtti",
+                            "-fvisibility=hidden",
+                            "-fvisibility-inlines-hidden",
+                            "-fno-exceptions",
+                            "-fno-stack-protector",
+                            "-fomit-frame-pointer",
+                            "-Wno-builtin-macro-redefined",
+                            "-Wno-unused-value",
+                            "-D__FILE__=__FILE_NAME__",
+                            "-Wno-gnu-string-literal-operator-template",
+                            "-Wno-c++2b-extensions",
+//                            "-std=c++11"
+                        )
+                        cFlags.add("-std=c2x")
+                        cFlags.addAll(flags)
+                        cppFlags.add("-std=c++2b")
+                        cppFlags.addAll(flags)
+                        abiFilters("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+                    }
+                }
             }
 
             lint {
