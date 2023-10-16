@@ -9,6 +9,10 @@ public class Hooker {
 
     private static final String TAG = "Hooker";
 
+    static {
+        Init.init();
+    }
+
     public static void doTestHook() {
         XposedHelpers.findAndHookMethod(Hooker.class, "doSomeThing", new XC_MethodHook() {
             @Override
