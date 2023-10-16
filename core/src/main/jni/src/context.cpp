@@ -90,7 +90,7 @@ namespace lspd {
             lsplant::MakeDexFileTrusted(env, cookie);
         }
         RegisterResourcesHook(env);
-        RegisterHookBridge(env);
+//        RegisterHookBridge(env);
         RegisterNativeAPI(env);
         RegisterDexParserBridge(env);
     }

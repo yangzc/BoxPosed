@@ -20,6 +20,6 @@
 
 #include <jni.h>
 
-namespace lspd {
-    void RegisterHookBridge(JNIEnv *env);
-}
+//namespace lspd {
+//    void RegisterHookBridge(JNIEnv *env);
+//}

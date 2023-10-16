@@ -71,7 +71,7 @@ jfieldID before_method_field = nullptr;
 jfieldID after_method_field = nullptr;
 }
 
-namespace lspd {
+//namespace lspd {
 LSP_DEF_NATIVE_METHOD(jboolean, HookBridge, hookMethod, jboolean useModernApi, jobject hookMethod,
                       jclass hooker, jint priority, jobject callback) {
     bool newHook = false;
@@ -334,12 +334,12 @@ static JNINativeMethod gMethods[] = {
     LSP_NATIVE_METHOD(HookBridge, callbackSnapshot, "(Ljava/lang/Class;Ljava/lang/reflect/Executable;)[[Ljava/lang/Object;"),
 };
 
-void RegisterHookBridge(JNIEnv *env) {
-    jclass method = env->FindClass("java/lang/reflect/Method");
-    invoke = env->GetMethodID(
-            method, "invoke",
-            "(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;");
-    env->DeleteLocalRef(method);
-    REGISTER_LSP_NATIVE_METHODS(HookBridge);
-}
-} // namespace lspd
+//void RegisterHookBridge(JNIEnv *env) {
+//    jclass method = env->FindClass("java/lang/reflect/Method");
+//    invoke = env->GetMethodID(
+//            method, "invoke",
+//            "(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;");
+//    env->DeleteLocalRef(method);
+//    REGISTER_LSP_NATIVE_METHODS(HookBridge);
+//}
+//} // namespace lspd

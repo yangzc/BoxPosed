@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import cn.xutils.boxposed.app.databinding.ActivityMainBinding
+import cn.xutils.boxposed.app.hook.Hooker
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,19 +17,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Example of a call to a native method
-        binding.sampleText.text = stringFromJNI()
+//        binding.sampleText.text = stringFromJNI()
+        Hooker.doTestHook();
     }
 
     /**
      * A native method that is implemented by the 'app' native library,
      * which is packaged with this application.
      */
-    external fun stringFromJNI(): String
+//    external fun stringFromJNI(): String
 
     companion object {
         // Used to load the 'app' library on application startup.
         init {
-            System.loadLibrary("app")
+            System.loadLibrary("core")
         }
     }
 }
