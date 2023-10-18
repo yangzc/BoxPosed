@@ -11,14 +11,10 @@ import java.nio.charset.Charset;
 
 public class FileUtils {
 
-    public static String readFile(File file) {
+    public static String readFile(File file) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try (FileInputStream fis = new FileInputStream(file)) {
             copy(fis, baos);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
         return new String(baos.toByteArray(), Charset.defaultCharset());
     }
