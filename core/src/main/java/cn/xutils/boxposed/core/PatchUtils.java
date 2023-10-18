@@ -34,7 +34,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class PatchUtils {
 
     private static final String TAG = "PatchUtils";
-    private static final String PLUGIN_APP = "";
+    private static final String PLUGIN_APP = "cn.xutils.plugin";
 
     public static void init() {
         Context context = createAppContext();
