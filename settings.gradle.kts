@@ -23,3 +23,4 @@ rootProject.name = "BoxPosed"
 include(":app")
 include(":core")
 //include("external:lsplant:lsplant")
+include(":test_plugin")

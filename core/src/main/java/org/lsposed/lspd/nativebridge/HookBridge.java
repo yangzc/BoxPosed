@@ -6,6 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import dalvik.annotation.optimization.FastNative;
 
 public class HookBridge {
+
+    static {
+        System.loadLibrary("core");
+    }
+
     public static native boolean hookMethod(boolean useModernApi, Executable hookMethod, Class<?> hooker, int priority, Object callback);
 
     public static native boolean unhookMethod(boolean useModernApi, Executable hookMethod, Object callback);

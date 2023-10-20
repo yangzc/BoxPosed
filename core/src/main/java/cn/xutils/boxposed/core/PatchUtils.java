@@ -27,6 +27,7 @@ import java.nio.charset.Charset;
 import java.util.Map;
 
 import cn.xutils.boxposed.core.utils.FileUtils;
+import dalvik.system.DexClassLoader;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -51,10 +52,10 @@ public class PatchUtils {
 //            Log.v(TAG, "ww signature: " + wwSignature);
 //            ApplicationInfo applicationInfo = wwPackageInfo.applicationInfo;
 //            Log.v(TAG, "applicationInfo: " + applicationInfo.sourceDir);
-            Context wxContext = context.createPackageContext(PLUGIN_APP,
+            Context pluginContext = context.createPackageContext(PLUGIN_APP,
                     Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
             ByteArrayOutputStream bas = new ByteArrayOutputStream();
-            try(InputStream is = wxContext.getAssets().open("init_entry")) {
+            try(InputStream is = pluginContext.getAssets().open("init_entry")) {
                 FileUtils.copy(is, bas);
             } catch (IOException e) {
             }
@@ -67,17 +68,27 @@ public class PatchUtils {
                 param.appInfo = context.getApplicationInfo();
                 param.isFirstApplication = isMainProcess(context);
 
+                String codePath = pluginContext.getPackageCodePath();
+                String optimizedDirectory = context.getCodeCacheDir().getAbsolutePath();
+                String librarySearchPath = context.getCodeCacheDir().getAbsolutePath();
+
+                DexClassLoader dexClassLoader = new DexClassLoader(
+                        codePath, optimizedDirectory, librarySearchPath, PatchUtils.class.getClassLoader());
+
                 Class<IXposedHookLoadPackage> applicationCls = (Class<IXposedHookLoadPackage>)
-                        wxContext.getClassLoader().loadClass(entryClass);
-                XposedHelpers.callStaticMethod(applicationCls, "handleLoadPackage", param);
+                        dexClassLoader.loadClass(entryClass);
+                IXposedHookLoadPackage loadPackage = applicationCls.newInstance();
+                loadPackage.handleLoadPackage(param);
             }
-//            Log.v(TAG, "appClz: " + wxContext.getClassLoader());
-//            Class applicationCls = wxContext.getClassLoader()
-//                    .loadClass("com.tencent.wework.launch.WwApplication");
-//            Log.v(TAG, "appInst: " + applicationCls.newInstance());
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }
