@@ -39,9 +39,6 @@ public class PatchUtils {
     public static void init() {
         Context context = createAppContext();
         try {
-//            PackageInfo wxPackageInfo = context.getPackageManager().getPackageInfo("com.tencent.mm", PackageManager.GET_SIGNATURES);
-//            String wxSignature = Base64.encodeToString(wxPackageInfo.signatures[0].toByteArray(), Base64.DEFAULT);
-//            Log.v(TAG, "wx signature: " + wxSignature);
             try {
                 // replace signature
                 String signature = FileUtils.getText(context.getAssets().open("signature"));
