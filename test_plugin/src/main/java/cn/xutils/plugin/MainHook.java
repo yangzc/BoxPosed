@@ -14,8 +14,8 @@ public class MainHook implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         Log.v(TAG, "handleLoadPackage... " + lpparam.packageName);
-        Class like = lpparam.classLoader.loadClass("com.tencent.wework.launch.WwApplicationLike");
-
+//        Class like = XposedHelpers.findClass("com.tencent.wework.launch.WwApplicationLike", lpparam.classLoader);
+        Class like = Class.forName("com.tencent.wework.launch.WwApplicationLike", false, lpparam.classLoader);
         Log.v(TAG, "handleLoadPackage... like: " + like);
         XposedHelpers.findAndHookMethod(like,
                 "onCreate", new XC_MethodHook() {
