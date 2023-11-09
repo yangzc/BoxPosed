@@ -18,7 +18,7 @@
                                               _page_align(_uintval(p) + n) != _page_align(_uintval(p)) ? _page_align(n) + _page_size : _page_align(n), \
                                               PROT_READ | PROT_WRITE | PROT_EXEC)
 
-bool init_result;
+//bool init_result;
 
 //void* InlineHooker(void* target, void* hooker) {
 //    _make_rwx(target, _page_size);
@@ -30,25 +30,25 @@ bool init_result;
 //    }
 //}
 
-inline int HookFunction(void *original, void *replace, void **backup) {
-//    if constexpr (isDebug) {
-//        Dl_info info;
-//        if (dladdr(original, &info))
-//        LOGD("Hooking {} ({}) from {} ({})",
-//             info.dli_sname ? info.dli_sname : "(unknown symbol)", info.dli_saddr,
-//             info.dli_fname ? info.dli_fname : "(unknown file)", info.dli_fbase);
-//    }
-    return DobbyHook(original, reinterpret_cast<dobby_dummy_func_t>(replace), reinterpret_cast<dobby_dummy_func_t *>(backup));
-}
-
-bool InlineUnhooker(void* func) {
-    return DobbyDestroy(func) == RT_SUCCESS;
-}
+//inline int HookFunction(void *original, void *replace, void **backup) {
+////    if constexpr (isDebug) {
+////        Dl_info info;
+////        if (dladdr(original, &info))
+////        LOGD("Hooking {} ({}) from {} ({})",
+////             info.dli_sname ? info.dli_sname : "(unknown symbol)", info.dli_saddr,
+////             info.dli_fname ? info.dli_fname : "(unknown file)", info.dli_fbase);
+////    }
+//    return DobbyHook(original, reinterpret_cast<dobby_dummy_func_t>(replace), reinterpret_cast<dobby_dummy_func_t *>(backup));
+//}
+//
+//bool InlineUnhooker(void* func) {
+//    return DobbyDestroy(func) == RT_SUCCESS;
+//}
 
 extern "C"
 JNIEXPORT jboolean JNICALL
 Java_org_lsposed_lsplant_LSPTest_initHooker(JNIEnv*, jclass) {
-    return init_result;
+    return JNI_TRUE;
 }
 
 extern "C"
@@ -63,29 +63,29 @@ Java_org_lsposed_lsplant_Hooker_doUnhook(JNIEnv* env, jobject, jobject target) {
     return lsplant::UnHook(env, target);
 }
 
-JNIEXPORT jint JNICALL
-JNI_OnLoad(JavaVM* vm, void* reserved) {
-    JNIEnv* env;
-    if (vm->GetEnv((void**) &env, JNI_VERSION_1_6) != JNI_OK) {
-        return JNI_ERR;
-    }
-    SandHook::ElfImg art("libart.so");
-#if !defined(__i386__)
-    dobby_enable_near_branch_trampoline();
-#endif
-    lsplant::InitInfo initInfo{
-            .inline_hooker = [](auto t, auto r) {
-                void* bk = nullptr;
-                return HookFunction(t, r, &bk) == RS_SUCCESS ? bk : nullptr;
-            },
-            .inline_unhooker = InlineUnhooker,
-            .art_symbol_resolver = [](auto symbol) {
-                return lspd::GetArt()->getSymbAddress(symbol);
-            },
-            .art_symbol_prefix_resolver = [](auto symbol) {
-                return lspd::GetArt()->getSymbPrefixFirstAddress(symbol);
-            },
-    };
-    init_result = lsplant::Init(env, initInfo);
-    return JNI_VERSION_1_6;
-}
+//JNIEXPORT jint JNICALL
+//JNI_OnLoad(JavaVM* vm, void* reserved) {
+//    JNIEnv* env;
+//    if (vm->GetEnv((void**) &env, JNI_VERSION_1_6) != JNI_OK) {
+//        return JNI_ERR;
+//    }
+//    SandHook::ElfImg art("libart.so");
+//#if !defined(__i386__)
+//    dobby_enable_near_branch_trampoline();
+//#endif
+//    lsplant::InitInfo initInfo{
+//            .inline_hooker = [](auto t, auto r) {
+//                void* bk = nullptr;
+//                return HookFunction(t, r, &bk) == RS_SUCCESS ? bk : nullptr;
+//            },
+//            .inline_unhooker = InlineUnhooker,
+//            .art_symbol_resolver = [](auto symbol) {
+//                return lspd::GetArt()->getSymbAddress(symbol);
+//            },
+//            .art_symbol_prefix_resolver = [](auto symbol) {
+//                return lspd::GetArt()->getSymbPrefixFirstAddress(symbol);
+//            },
+//    };
+//    init_result = lsplant::Init(env, initInfo);
+//    return JNI_VERSION_1_6;
+//}

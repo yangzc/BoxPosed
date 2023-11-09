@@ -19,7 +19,7 @@ public class Hooker {
             protected void beforeHookedMethod(MethodHookParam<?> param) throws Throwable {
                 super.beforeHookedMethod(param);
                 Log.v(TAG, "beforeHookedMethod...");
-                param.setResult("no");
+//                param.setResult("no");
             }
 
             @Override
