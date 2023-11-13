@@ -18,14 +18,14 @@
  * Copyright (C) 2021 LSPosed Contributors
  */
 
-package de.robv.android.xposed;
+package cn.xutils.boxposed.api;
 
 import java.lang.reflect.Executable;
 import java.lang.reflect.Member;
 import java.util.HashMap;
 
-import de.robv.android.xposed.callbacks.IXUnhook;
-import de.robv.android.xposed.callbacks.XCallback;
+import cn.xutils.boxposed.api.callbacks.IXUnhook;
+import cn.xutils.boxposed.api.callbacks.XCallback;
 
 /**
  * Callback class for method hooks.

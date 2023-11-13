@@ -1,6 +1,6 @@
-package cn.xutils.boxposed.core;
+package cn.xutils.boxposed.api;
 
-import static de.robv.android.xposed.XposedHelpers.findField;
+import static cn.xutils.boxposed.api.XposedHelpers.findField;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -25,10 +25,9 @@ import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import cn.xutils.boxposed.core.utils.FileUtils;
+import cn.xutils.boxposed.api.callbacks.XC_LoadPackage;
+import cn.xutils.boxposed.api.utils.FileUtils;
 import dalvik.system.DexClassLoader;
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class PatchUtils {
 

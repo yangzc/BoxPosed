@@ -18,7 +18,7 @@
  * Copyright (C) 2021 LSPosed Contributors
  */
 
-package de.robv.android.xposed.callbacks;
+package cn.xutils.boxposed.api.callbacks;
 
 import android.os.Bundle;
 
@@ -26,7 +26,7 @@ import android.os.Bundle;
 
 import java.io.Serializable;
 
-//import de.robv.android.xposed.XposedBridge;
+//import cn.xutils.boxposed.api.XposedBridge;
 
 /**
  * Base class for Xposed callbacks.

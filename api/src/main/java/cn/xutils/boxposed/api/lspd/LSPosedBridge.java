@@ -1,4 +1,4 @@
-package org.lsposed.lspd.impl;
+package cn.xutils.boxposed.api.lspd;
 
 import android.util.Log;
 
@@ -11,7 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import de.robv.android.xposed.XposedBridge;
+import cn.xutils.boxposed.api.XposedBridge;
+
 //import io.github.libxposed.api.XposedInterface;
 //import io.github.libxposed.api.annotations.AfterInvocation;
 //import io.github.libxposed.api.annotations.BeforeInvocation;

@@ -1,9 +1,9 @@
-package de.robv.android.xposed;
+package cn.xutils.boxposed.api;
 
 import android.app.Application;
 
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
+import cn.xutils.boxposed.api.callbacks.XC_LoadPackage;
+import cn.xutils.boxposed.api.callbacks.XC_LoadPackage.LoadPackageParam;
 
 /**
  * Get notified when an app ("Android package") is loaded.

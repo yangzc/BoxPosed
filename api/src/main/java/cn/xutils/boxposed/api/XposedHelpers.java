@@ -18,7 +18,7 @@
  * Copyright (C) 2021 LSPosed Contributors
  */
 
-package de.robv.android.xposed;
+package cn.xutils.boxposed.api;
 
 import android.content.res.AssetManager;
 import android.content.res.Resources;

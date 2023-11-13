@@ -1,4 +1,4 @@
-package cn.xutils.boxposed.core.utils;
+package cn.xutils.boxposed.api.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

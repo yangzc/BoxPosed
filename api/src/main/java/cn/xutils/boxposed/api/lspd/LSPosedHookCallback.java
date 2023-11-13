@@ -1,4 +1,4 @@
-package org.lsposed.lspd.impl;
+package cn.xutils.boxposed.api.lspd;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -6,9 +6,9 @@ import androidx.annotation.Nullable;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Member;
 
-import io.github.libxposed.api.XposedInterface;
+//import io.github.libxposed.api.XposedInterface;
 
-public class LSPosedHookCallback<T extends Executable> implements XposedInterface.BeforeHookCallback, XposedInterface.AfterHookCallback {
+public class LSPosedHookCallback<T extends Executable>/* implements XposedInterface.BeforeHookCallback, XposedInterface.AfterHookCallback*/ {
 
     public Member method;
 
@@ -28,33 +28,33 @@ public class LSPosedHookCallback<T extends Executable> implements XposedInterfac
     // Both before and after
 
     @NonNull
-    @Override
+//    @Override
     public Member getMember() {
         return this.method;
     }
 
     @Nullable
-    @Override
+//    @Override
     public Object getThisObject() {
         return this.thisObject;
     }
 
     @NonNull
-    @Override
+//    @Override
     public Object[] getArgs() {
         return this.args;
     }
 
     // Before
 
-    @Override
+//    @Override
     public void returnAndSkip(@Nullable Object result) {
         this.result = result;
         this.throwable = null;
         this.isSkipped = true;
     }
 
-    @Override
+//    @Override
     public void throwAndSkip(@Nullable Throwable throwable) {
         this.result = null;
         this.throwable = throwable;
@@ -64,29 +64,29 @@ public class LSPosedHookCallback<T extends Executable> implements XposedInterfac
     // After
 
     @Nullable
-    @Override
+//    @Override
     public Object getResult() {
         return this.result;
     }
 
     @Nullable
-    @Override
+//    @Override
     public Throwable getThrowable() {
         return this.throwable;
     }
 
-    @Override
+//    @Override
     public boolean isSkipped() {
         return this.isSkipped;
     }
 
-    @Override
+//    @Override
     public void setResult(@Nullable Object result) {
         this.result = result;
         this.throwable = null;
     }
 
-    @Override
+//    @Override
     public void setThrowable(@Nullable Throwable throwable) {
         this.result = null;
         this.throwable = throwable;

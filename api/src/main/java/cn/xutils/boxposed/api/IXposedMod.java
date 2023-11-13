@@ -18,7 +18,7 @@
  * Copyright (C) 2021 LSPosed Contributors
  */
 
-package de.robv.android.xposed;
+package cn.xutils.boxposed.api;
 
 /**
  * Marker interface for Xposed modules. Cannot be implemented directly.

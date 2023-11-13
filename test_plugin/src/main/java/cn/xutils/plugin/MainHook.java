@@ -4,10 +4,9 @@ import android.util.Log;
 
 import java.lang.reflect.Method;
 
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import cn.xutils.boxposed.api.IXposedHookLoadPackage;
+import cn.xutils.boxposed.api.XposedHelpers;
+import cn.xutils.boxposed.api.callbacks.XC_LoadPackage;
 
 public class MainHook implements IXposedHookLoadPackage {
 

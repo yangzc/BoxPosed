@@ -2,7 +2,7 @@ package cn.xutils.boxposed.app;
 
 import android.app.Application;
 
-import cn.xutils.boxposed.core.PatchUtils;
+import cn.xutils.boxposed.api.PatchUtils;
 
 public class App extends Application {
 

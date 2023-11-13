@@ -18,15 +18,13 @@
  * Copyright (C) 2021 - 2022 LSPosed Contributors
  */
 
-package de.robv.android.xposed;
+package cn.xutils.boxposed.api;
 
 //import android.app.ActivityThread;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.util.Log;
 
-import org.lsposed.lspd.impl.LSPosedBridge;
-import org.lsposed.lspd.impl.LSPosedHookCallback;
+import cn.xutils.boxposed.api.lspd.LSPosedBridge;
+import cn.xutils.boxposed.api.lspd.LSPosedHookCallback;
 import org.lsposed.lspd.nativebridge.HookBridge;
 //import org.lsposed.lspd.nativebridge.ResourcesHook;
 
@@ -40,7 +38,6 @@ import java.lang.reflect.Proxy;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 //import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 //import de.robv.android.xposed.callbacks.XC_LoadPackage;

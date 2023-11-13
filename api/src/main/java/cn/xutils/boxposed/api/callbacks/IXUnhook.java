@@ -18,7 +18,7 @@
  * Copyright (C) 2021 LSPosed Contributors
  */
 
-package de.robv.android.xposed.callbacks;
+package cn.xutils.boxposed.api.callbacks;
 
 /**
  * Interface for objects that can be used to remove callbacks.

@@ -2,8 +2,11 @@ package cn.xutils.boxposed.app.hook;
 
 import android.util.Log;
 
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedHelpers;
+import cn.xutils.boxposed.api.XC_MethodHook;
+import cn.xutils.boxposed.api.XposedHelpers;
+
+//import de.robv.android.xposed.XC_MethodHook;
+//import de.robv.android.xposed.XposedHelpers;
 
 public class Hooker {
 
