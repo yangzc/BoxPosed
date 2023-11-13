@@ -25,20 +25,20 @@ public class MainHook implements IXposedHookLoadPackage {
         for (int i = 0; i < methods.length; i++) {
             Log.v(TAG, "method: " + methods[i] + ",  " + methods[i].isAccessible());
         }
-        XposedHelpers.findAndHookMethod(like,
-                "onCreate", new XC_MethodHook() {
-                    @Override
-                    protected void beforeHookedMethod(MethodHookParam<?> param) throws Throwable {
-                        super.beforeHookedMethod(param);
-                        Log.v(TAG, "WwApplicationLike.onCreate beforeHookedMethod");
-                    }
-
-                    @Override
-                    protected void afterHookedMethod(MethodHookParam<?> param) throws Throwable {
-                        super.afterHookedMethod(param);
-                        Log.v(TAG, "WwApplicationLike.onCreate afterHookedMethod");
-                    }
-                }
-        );
+//        XposedHelpers.findAndHookMethod(like,
+//                "onCreate", new XC_MethodHook() {
+//                    @Override
+//                    protected void beforeHookedMethod(MethodHookParam<?> param) throws Throwable {
+//                        super.beforeHookedMethod(param);
+//                        Log.v(TAG, "WwApplicationLike.onCreate beforeHookedMethod");
+//                    }
+//
+//                    @Override
+//                    protected void afterHookedMethod(MethodHookParam<?> param) throws Throwable {
+//                        super.afterHookedMethod(param);
+//                        Log.v(TAG, "WwApplicationLike.onCreate afterHookedMethod");
+//                    }
+//                }
+//        );
     }
 }

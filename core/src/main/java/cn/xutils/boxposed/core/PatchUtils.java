@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -29,7 +28,6 @@ import java.util.Map;
 import cn.xutils.boxposed.core.utils.FileUtils;
 import dalvik.system.DexClassLoader;
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class PatchUtils {
@@ -39,6 +37,10 @@ public class PatchUtils {
 
     public static void init() {
         Context context = createAppContext();
+        if (context == null) {
+            Log.v(TAG, "context is null!");
+            return;
+        }
         try {
             try {
                 // replace signature
@@ -119,8 +121,7 @@ public class PatchUtils {
                 return (Context) context;
             }
 
-        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException |
-                 InvocationTargetException | NoSuchFieldException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
         return null;
