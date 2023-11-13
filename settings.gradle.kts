@@ -4,6 +4,9 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            setUrl("https://www.jitpack.io")
+        }
     }
 }
 dependencyResolutionManagement {
@@ -11,6 +14,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            setUrl("https://www.jitpack.io")
+        }
         mavenLocal {
             content {
                 includeGroup("io.github.libxposed")

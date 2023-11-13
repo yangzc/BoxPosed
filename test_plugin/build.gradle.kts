@@ -34,6 +34,7 @@ android {
 
 dependencies {
     compileOnly(projects.api)
+//    implementation("com.github.yangzc:BoxPosed:api-SNAPSHOT")
     implementation(libs.appcompat)
     implementation(libs.material)
 //    testImplementation(libs.junit)
