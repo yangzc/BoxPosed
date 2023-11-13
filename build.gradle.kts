@@ -48,9 +48,9 @@ val androidMinSdkVersion by extra(27)
 val androidBuildToolsVersion by extra("34.0.0")
 val androidCompileSdkVersion by extra(34)
 val androidCompileNdkVersion by extra("25.1.8937393")
-val androidSourceCompatibility by extra(JavaVersion.VERSION_1_10)
-val androidTargetCompatibility by extra(JavaVersion.VERSION_1_10)
-val kotlinJvmTargetVersion by extra(JvmTarget.JVM_10)
+val androidSourceCompatibility by extra(JavaVersion.VERSION_17)
+val androidTargetCompatibility by extra(JavaVersion.VERSION_17)
+val kotlinJvmTargetVersion by extra(JvmTarget.JVM_17)
 
 subprojects {
     plugins.withType(AndroidBasePlugin::class.java) {

@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "cn.xutils.boxposed.api"
-    compileSdk = 33
+//    compileSdk = 33
 
     defaultConfig {
-        minSdk = 24
+//        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
