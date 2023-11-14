@@ -33,7 +33,9 @@ android {
 }
 
 dependencies {
-    compileOnly(projects.api)
+//    compileOnly(projects.api)
+//    compileOnly("cn.xutils.boxposed:api:1.0.0")
+    compileOnly(libs.boxposed.api)
 //    implementation("com.github.yangzc:BoxPosed:api-SNAPSHOT")
     implementation(libs.appcompat)
     implementation(libs.material)
